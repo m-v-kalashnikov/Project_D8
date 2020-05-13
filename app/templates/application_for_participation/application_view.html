@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <table class="table table-lg table-hover table-dark mt-5">
+      <tbody>
+        <tr>
+          <td>Как вас будут представлять:</td>
+          <td>{{ application.name|capfirst }}</td>
+        </tr>
+        <tr>
+          <td>Сопроводительный текст:</td>
+          <td>{{ application.text|capfirst }}</td>
+        </tr>
+        <tr>
+          <td>Формат выступления:</td>
+          <td>{{ application.get_presentation_format_display|capfirst }}</td>
+        </tr>
+        <tr>
+          {% if application.applications_condition == 'CF' %}
+            <td>Где и когда вы будете выступать:</td>
+          {% else %}
+            <td>Желаемая сцена:</td>
+          {% endif %}
+          <td>{{ application.desired_scene_and_time_slot|capfirst }}</td>
+        </tr>
+        <tr>
+          <td>Ваш комментарий:</td>
+          <td>{{ application.comment|capfirst }}</td>
+        </tr>
+        <tr>
+            <td>Состояние заявки:</td>
+            <td>{{ application.get_applications_condition_display|capfirst }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+{% endblock %}

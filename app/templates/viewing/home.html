@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load viewing_extras %}
+{% block content %}
+    {% for scene in scenes%}
+        <div class="row mt-3">
+            <div class="col {% if scene.name == 'Красная' %} bg-danger {% elif scene.name == 'Арбузик' %} bg-success {% elif scene.name == 'Синяя' %} bg-primary{% endif %}  rounded">
+                <div class="">
+                    <h2 class="text-white text-center">{{ scene.name }}</h2>
+                    <hr class="bg-white">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="text-white mb-3">Выступают тут</h4>
+                            <table class="table text-white">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Кто</th>
+                                  <th scope="col">Описание</th>
+                                  <th scope="col">Где/когда</th>
+                                  <th scope="col">Рейтинг</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for app in scene|apps %}
+                                    <tr>
+                                      <th scope="row">{{ forloop.counter }}</th>
+                                      <td>{{ app.name }}</td>
+                                      <td>{{ app.text }}</td>
+                                      <td>{{ app.desired_scene_and_time_slot }}</td>
+                                      <td>{{ app.rating }}</td>
+                                    </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <h4 class="text-white mb-3">Описание сцены</h4>
+                            <p class="text-white">{{ scene.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col">
+            <p>{{ inform.what }}</p>
+            <p>{{ inform.where }}</p>
+            <p>{{ inform.when }}</p>
+            <p>{{ inform.description }}</p>
+        </div>
+    </div>
+
+{% endblock %}

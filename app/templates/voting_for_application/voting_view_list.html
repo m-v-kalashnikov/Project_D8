@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="row">
+            <h3 class="mt-5 text-center">Заявки на рассмотрении</h3>
+            <table class="table table-lg table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Имя | название группы</th>
+                  <th scope="col">Статус</th>
+                  <th scope="col">Рейтинг</th>
+                  <th scope="col">Ссылка</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for application in applications.pending %}
+                <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td>{{ application.name|capfirst }}</td>
+                  <td>{{ application.get_applications_condition_display|capfirst }}</td>
+                  <td>{{ application.rating|capfirst }}</td>
+                  {% if application.can_be_voted is False %}
+                    <td><a class="btn btn-success badge-pill" href="{% url 'voting_for_application:voting_detail' application.user.username %}">Смотреть</a></td>
+                  {% else %}
+                    <td><a class="btn btn-primary badge-pill" href="{% url 'voting_for_application:voting_detail' application.user.username %}">Можно голосовать</a></td>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h3 class="mt-5 text-center">Принятые заявки</h3>
+            <table class="table table-lg table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Имя | название группы</th>
+                  <th scope="col">Статус</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for application in applications.voted %}
+                <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td>{{ application.name|capfirst }}</td>
+                  <td>{{ application.get_applications_condition_display|capfirst }}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+{% endblock %}
+

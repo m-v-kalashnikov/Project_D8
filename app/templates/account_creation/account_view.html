@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <table class="table table-lg table-hover table-dark mt-5">
+      <tbody>
+        <tr>
+          <td>Пользователь:</td>
+          <td>{{ account.user|capfirst }}</td>
+        </tr>
+        <tr>
+          <td>Имя:</td>
+          <td>{{ account.name|capfirst }}</td>
+        </tr>
+        <tr>
+          <td>Роль:</td>
+          <td>{{ account.get_musician_or_sensor_display|capfirst }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+{% endblock %}

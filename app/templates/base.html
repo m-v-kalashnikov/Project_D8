@@ -1,0 +1,11 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% include 'navbar.html' %}
+{% bootstrap_messages %}
+
+<main role="main" class="container">
+    {% block content %}
+
+    {% endblock content %}
+</main>

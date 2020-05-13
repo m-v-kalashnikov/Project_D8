@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+    {% if request.user.account.verified == True %}
+        <div class="row">
+          {% if request.user.username not in application.voted_sensors %}
+            <form action="" method="POST" class="form mt-5">
+              {% csrf_token %}
+              {% bootstrap_form form %}
+              {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                  Отправить
+                </button>
+              {% endbuttons %}
+            </form>
+          {% endif %}
+          {% if verdict_form is not None %}
+            <form action="" method="POST" class="form mt-5">
+                {% csrf_token %}
+                {% bootstrap_form verdict_form %}
+                {% buttons %}
+                  <button type="submit" class="btn btn-warning">
+                    Поставить вердикт
+                  </button>
+                {% endbuttons %}
+            </form>
+          {% endif %}
+        </div>
+    {% else %}
+        <div class="row">
+            <h3 class="mt-5">Вы не можете голосовать пока Администраторы не верифицируют ваш аккаунт.</h3>
+        </div>
+    {% endif %}
+{% endblock %}
