@@ -36,17 +36,11 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 ACCOUNT_USERNAME_REQUIRED = False
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 
-EMAIL_HOST = "smtp.gmail.com"
+MAILGUN_ACCESS_KEY = 'becf885eb4c5bfdc49221307002df428-3e51f8d2-60cbb466'
 
-EMAIL_USE_TLS = True
-
-EMAIL_PORT = 587
-
-EMAIL_HOST_USER = os.environ.get("EMAIL_LOGIN")
-
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+MAILGUN_SERVER_NAME = 'mail.kalashnikovsystem.com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
