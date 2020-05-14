@@ -38,9 +38,9 @@ ACCOUNT_USERNAME_REQUIRED = False
 
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 
-MAILGUN_ACCESS_KEY = 'becf885eb4c5bfdc49221307002df428-3e51f8d2-60cbb466'
+MAILGUN_ACCESS_KEY = os.environ.get("MAILGUN_ACCESS_KEY")
 
-MAILGUN_SERVER_NAME = 'mail.kalashnikovsystem.com'
+MAILGUN_SERVER_NAME = os.environ.get("MAILGUN_SERVER_NAME")
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
