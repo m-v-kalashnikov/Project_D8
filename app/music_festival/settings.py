@@ -36,11 +36,17 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 ACCOUNT_USERNAME_REQUIRED = False
 
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-MAILGUN_ACCESS_KEY = os.environ.get("MAILGUN_ACCESS_KEY")
+EMAIL_HOST = 'smtp.mailgun.org'
 
-MAILGUN_SERVER_NAME = os.environ.get("MAILGUN_SERVER_NAME")
+EMAIL_USE_TLS = True
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = os.environ.get("EMAIL_LOGIN")
+
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
